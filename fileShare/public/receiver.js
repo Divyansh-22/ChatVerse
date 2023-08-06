@@ -1,6 +1,6 @@
 (function(){
     let senderID;
-    const socket = io('http://localhost:5500');
+    const socket = io('https://file-share-aab9.onrender.com');
 
     function generateID(){
         return `${Math.trunc(Math.random()*999)} - ${Math.trunc(Math.random()*999)} - ${Math.trunc(Math.random()*999)}`

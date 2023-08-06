@@ -1,4 +1,4 @@
-const socket = io('http://localhost:8000');
+const socket = io('https://chatbox-o38b.onrender.com');
 
 const form = document.getElementById("send-container")
 const msgInput = document.getElementById('messageInp')

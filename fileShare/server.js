@@ -1,5 +1,5 @@
 
-const io = require("socket.io")(5500,{cors:"http://localhost:5500"});
+const io = require("socket.io")(5500,{cors:"https://file-share-aab9.onrender.com"});
 
 console.log("Server.js running on port 5500");
 
