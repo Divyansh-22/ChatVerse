@@ -1,0 +1,174 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="css/style.css" />
+    <link rel="stylesheet" type="text/css" href="fileShare/public/style.css" />
+    <link rel="icon" type="image/x-icon" href="./img/logo.ico"/>
+    <title>iChat - Real Time App</title>
+    <script defer src="http://localhost:8000/socket.io/socket.io.js"></script>
+    <script defer src="js/client.js"></script>
+  </head>
+  <body>
+    <div class="decider" id="decide-part">
+      <nav>
+        <h1 class="h">CHATVERSE</h1>
+      </nav>
+      <div class="code" id="code">
+        <p class="text">Your Code is</p> 
+        <span id="chatCode"></span>
+        <img class="copy" src="./img/copy.png" onclick="copybtn()"></img>
+      </div>
+      <button class="btn btn-primary" id="createMyRoom" onclick="generateBtn()">Create Chat</button>
+      <input type="text" placeholder="Enter the room id" id="myRoomID" style="display: none;">
+      <button class="btn btn-primary" id="joinMyRoom" onclick="joinBtn()">Join Chat</button>
+      <button class="btn btn-primary" id="joinRoom" onclick="join()" style="display: none;">Join</button>
+    </div>
+    <div class="parent" id="parent" style="display: none;">
+      <div class="part1">
+        <nav>
+          <h1 class="h">Welcome Folks!</h1>
+        </nav>
+        <div class="container"></div>
+        <footer class="send">
+          <form action="#" id="send-container">
+            <textarea
+              rows="2"
+              cols="5"
+              oninput="this.parentNode.dataset.value = this.value"
+              type="text"
+              name="messageInp"
+              id="messageInp"
+              placeholder="Type your message"
+            ></textarea>
+            <button id="btn" class="btn" type="submit">
+              <img class="btn" src="../img/send2.png" alt="send" />
+            </button>
+            <button id="img-btn" class="btn" onclick="showBox()">
+              <img class="btn" src="../img/sendfile.png" />
+            </button>
+          </form>
+        </footer>
+      </div>
+      <script>
+        const showBox = () => {
+          document.getElementById("part2").style.display = "flex";
+        };
+        const reset = () => {
+          document.getElementById("part2").style.display = "none";
+          document.getElementById("sender").style.display = "none";
+          document.getElementById("receiver").style.display = "none";
+          document.getElementById("box").style.display = "block";
+        };
+        const displaySender = () => {
+          document.getElementById("sender").style.display = "block";
+          document.getElementById("box").style.display = "none";
+        };
+        const displayRecv = () => {
+          document.getElementById("receiver").style.display = "block";
+          document.getElementById("box").style.display = "none";
+        };
+      </script>
+      <div class="part2" id="part2" style="display: none">
+        <div id="box">
+          <button class="create-room" onclick="displaySender()">
+            Create Room
+          </button>
+          <button class="join-room" onclick="displayRecv()">Join Room</button>
+          <button
+            id="close-btn"
+            class="btn btn-primary"
+            type="button"
+            onclick="reset()"
+          >
+            Close
+          </button>
+        </div>
+
+        <div id="sender" style="display: none">
+          <div class="app">
+            <button
+              id="close-btn"
+              class="btn btn-primary"
+              type="button"
+              onclick="reset()"
+            >
+              Close
+            </button>
+            <div class="screen join-screen active">
+              <div class="form">
+                <h2>Share your files securely</h2>
+                <div class="form-input">
+                  <button id="sender-start-con-btn">Create room</button>
+                </div>
+                <div class="form-input" id="join-id">
+                  <strong>Room ID</strong>
+                  <span>000-000-000</span>
+                </div>
+              </div>
+            </div>
+            <div class="screen fs-screen">
+              <div class="file-input">
+                <label for="file-input">
+                  Click here to select files for sharing
+                </label>
+                <input type="file" id="file-input" />
+              </div>
+              <div class="files-list">
+                <div class="title">Shared Files</div>
+              </div>
+            </div>
+          </div>
+          <script
+            type="text/javascript"
+            src="http://localhost:5500/socket.io/socket.io.js"
+          ></script>
+          <script
+            type="text/javascript"
+            src="fileShare/public/sender.js"
+          ></script>
+        </div>
+
+        <div id="receiver" style="display: none">
+          <div class="app">
+            <button id="close-btn" type="button" onclick="reset()">
+              Close
+            </button>
+            <div class="screen join-screen-recv active">
+              <div class="form">
+                <h2>Share your files securely</h2>
+                <div class="form-input-recv">
+                  <label for="join-id-recv">Join ID</label>
+                  <input type="text" id="join-id-recv" />
+                </div>
+                <div class="form-input-recv">
+                  <button id="receiver-start-con-btn">Connect</button>
+                </div>
+              </div>
+            </div>
+            <div class="screen fs-screen-recv">
+              <div class="files-list-recv">
+                <div class="title">Shared Files</div>
+              </div>
+            </div>
+          </div>
+          <script
+            type="text/javascript"
+            src="https://cdnjs.cloudflare.com/ajax/libs/downloadjs/1.4.1/download.min.js"
+          ></script>
+          <script
+            type="text/javascript"
+            src="http://localhost:5500/socket.io/socket.io.js"
+          ></script>
+          <script
+            type="text/javascript"
+            src="fileShare/public/receiver.js"
+          ></script>
+        </div>
+      </div>
+    </div>
+    <footer class="footer">Copyright &copy; 2023 reserved</footer>
+  </body>
+</html>

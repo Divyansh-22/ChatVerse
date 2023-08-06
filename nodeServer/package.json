@@ -1,0 +1,17 @@
+{
+  "name": "nodeserver",
+  "version": "1.0.0",
+  "description": "This is a node server for real time chat app",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "dev": "concurrently \"node ./index.js\" \"node ../fileShare/server.js\" "
+  },
+  "author": "Divyansh",
+  "license": "ISC",
+  "dependencies": {
+    "concurrently": "^8.2.0",
+    "prompt-sync": "^4.2.0",
+    "socket.io": "^4.6.1"
+  }
+}
