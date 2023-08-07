@@ -14,6 +14,9 @@ const generateBtn = () => {
     document.getElementById('code').style.display = "inline-block";
     let roomID = code.innerText = generateID() ;
     let userName = prompt("Enter your name");
+    while(userName == null){
+        userName = prompt("please enter your name");
+    }
     socket.emit('new-user-joined',roomID,userName);
     document.getElementById("joinMyRoom").style.display = "none";
 }
@@ -45,6 +48,9 @@ const join = () => {
     if(chatCode.length === 0) return;
     document.getElementById('code').style.display = "none";
     let userName = prompt("Enter your name");
+    while(userName == null){
+        userName = prompt("please enter your name");
+    }
     socket.emit('new-user-joined',chatCode,userName); 
     document.getElementById('decide-part').style.display = "none";
     document.getElementById('parent').style.display = "flex";
