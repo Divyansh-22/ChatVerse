@@ -13,38 +13,45 @@ const generateBtn = () => {
     let code = document.getElementById('chatCode');
     document.getElementById('code').style.display = "inline-block";
     let roomID = code.innerText = generateID() ;
-    socket.emit('new-user-joined',roomID);
+    let userName = prompt("Enter your name");
+    socket.emit('new-user-joined',roomID,userName);
     document.getElementById("joinMyRoom").style.display = "none";
 }
 
 const copybtn = () => {
     let text = document.getElementById('chatCode').innerText;
     navigator.clipboard.writeText(text);
-    alert(`Copied ${text}`);
+    // alert(`Copied ${text}`);
+    let myAlert = document.getElementById('alert');
+    myAlert.style.display = "block";
+    myAlert.innerText = `Copied ${text}`;
+    //To disappear the alert
+    setTimeout(() => {
+        myAlert.style.display = "none";
+    },1000);
+    
+    
 }
 
 const joinBtn = () => {
     document.getElementById("createMyRoom").style.display = "none";
-    document.getElementById("myRoomID").style.display = "block";
     document.getElementById("joinMyRoom").style.display = "none";
-    document.getElementById("joinRoom").style.display = "block";
+    document.getElementById("enter-code").style.display = "block";
+    // document.getElementById("myRoomID").style.display = "block";
+    // document.getElementById("joinRoom").style.display = "block";
 }
 const join = () => {
     let chatCode = document.getElementById("myRoomID").value
     if(chatCode.length === 0) return;
-    // if(arr.indexOf(chatCode) === -1){
-    //     document.getElementById('code').innerText = "Invalid Room Id";
-    // }
-    //else{
-        document.getElementById('code').innerText = "";
-        socket.emit('new-user-joined',chatCode); 
-        document.getElementById('decide-part').style.display = "none";
-        document.getElementById('parent').style.display = "flex";
-        socket.emit("event-name");
-    //}
-    
-}
+    document.getElementById('code').style.display = "none";
+    let userName = prompt("Enter your name");
+    socket.emit('new-user-joined',chatCode,userName); 
+    document.getElementById('decide-part').style.display = "none";
+    document.getElementById('parent').style.display = "flex";
+    socket.emit("event-name");
 
+}
+//to append a message to the container
 const append = (message,position) =>{
     const messageElement = document.createElement('div');
     messageElement.innerText = message;
@@ -54,7 +61,7 @@ const append = (message,position) =>{
     if(position !== "right") audio.play();
     messageContainer.scrollTo(0,document.body.scrollHeight)
 }
-
+//sending a message
 form.addEventListener('submit', (e) => {
     e.preventDefault();
     const message = msgInput.value;
@@ -64,19 +71,23 @@ form.addEventListener('submit', (e) => {
     msgInput.value = '';}
 });
 
+//redirect the user to chat-window
 socket.on('my-event', () => {
     document.getElementById('decide-part').style.display = "none";
     document.getElementById('parent').style.display = "flex";  
 })
 
+//A new user joined
 socket.on('user-joined',name => {
     append(`${name} joined the chat`,'center');
 });
 
+//A message is received
 socket.on('received',data => {
     append(`${data.name} : ${data.message}`,'left');
 });
 
+//A user is disconnected
 socket.on('disconnected', name => {
     append(`${name} has disconnected from the server!`,'center')
 })

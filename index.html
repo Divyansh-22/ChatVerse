@@ -10,6 +10,10 @@
     <title>iChat - Real Time App</title>
     <script defer src="https://chatbox-o38b.onrender.com/socket.io/socket.io.js"></script>
     <script defer src="js/client.js"></script>
+    <script defer src="https://file-share-aab9.onrender.com/socket.io/socket.io.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/downloadjs/1.4.1/download.min.js"></script>
+    <script defer src="fileShare/public/receiver.js"></script>
+    <script defer src="fileShare/public/sender.js"></script>
   </head>
   <body>
     <div class="decider" id="decide-part">
@@ -22,9 +26,13 @@
         <img class="copy" src="./img/copy.png" onclick="copybtn()"></img>
       </div>
       <button class="btn btn-primary" id="createMyRoom" onclick="generateBtn()">Create Chat</button>
-      <input type="text" placeholder="Enter the room id" id="myRoomID" style="display: none;">
       <button class="btn btn-primary" id="joinMyRoom" onclick="joinBtn()">Join Chat</button>
-      <button class="btn btn-primary" id="joinRoom" onclick="join()" style="display: none;">Join</button>
+      <div id="alert"></div>
+      <div class="enter-code" id="enter-code" style="display: none;">
+        <div style="font-size: 28px;color: purple;margin: 15px;">Enter the Room ID</div>
+        <input type="text" placeholder="room id" id="myRoomID" >
+        <button class="btn btn-primary" id="joinRoom" onclick="join()" style="display: inline-block;">Join</button>
+      </div>
     </div>
     <div class="parent" id="parent" style="display: none;">
       <div class="part1">
@@ -44,10 +52,10 @@
               placeholder="Type your message"
             ></textarea>
             <button id="btn" class="btn" type="submit">
-              <img class="btn" src="../img/send2.png" alt="send" />
+              <img class="btn" src="./img/send2.png" alt="send" />
             </button>
             <button id="img-btn" class="btn" onclick="showBox()">
-              <img class="btn" src="../img/sendfile.png" />
+              <img class="btn" src="./img/sendfile.png" alt="share Files" />
             </button>
           </form>
         </footer>
@@ -73,9 +81,7 @@
       </script>
       <div class="part2" id="part2" style="display: none">
         <div id="box">
-          <button class="create-room" onclick="displaySender()">
-            Create Room
-          </button>
+          <button class="create-room" onclick="displaySender()">Create Room</button>
           <button class="join-room" onclick="displayRecv()">Join Room</button>
           <button
             id="close-btn"
@@ -121,14 +127,6 @@
               </div>
             </div>
           </div>
-          <script
-            type="text/javascript"
-            src="https://file-share-aab9.onrender.com/socket.io/socket.io.js"
-          ></script>
-          <script
-            type="text/javascript"
-            src="fileShare/public/sender.js"
-          ></script>
         </div>
 
         <div id="receiver" style="display: none">
@@ -137,7 +135,7 @@
               Close
             </button>
             <div class="screen join-screen-recv active">
-              <div class="form">
+              <div class="form enter-code">
                 <h2>Share your files securely</h2>
                 <div class="form-input-recv">
                   <label for="join-id-recv">Join ID</label>
@@ -154,21 +152,9 @@
               </div>
             </div>
           </div>
-          <script
-            type="text/javascript"
-            src="https://cdnjs.cloudflare.com/ajax/libs/downloadjs/1.4.1/download.min.js"
-          ></script>
-          <script
-            type="text/javascript"
-            src="https://file-share-aab9.onrender.com/socket.io/socket.io.js"
-          ></script>
-          <script
-            type="text/javascript"
-            src="fileShare/public/receiver.js"
-          ></script>
         </div>
       </div>
     </div>
-    <footer class="footer">Copyright &copy; 2023 reserved</footer>
+    <!-- <footer class="footer">Copyright &copy; 2023 reserved</footer> -->
   </body>
 </html>

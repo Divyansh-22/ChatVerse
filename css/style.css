@@ -1,10 +1,3 @@
-/* .logo{
-    display: block;
-    margin: auto;
-    width: 50px;
-    height: 50px;
-} */
-
 .h{
     text-align: center;
     color: #4d260d;
@@ -140,12 +133,8 @@
 }
 
 body{
-     /* background-color: rgba(58, 37, 24, 0.752);  */
     background: linear-gradient(to right,rgb(200, 145, 199),rgb(46, 88, 131));
-    
-     /* background: url("../img/bcg.jpg") center center no-repeat;
-     background-size: 100rem; */
-
+     background-size: 100rem;
 }
 
 .center{
@@ -169,6 +158,18 @@ body{
     height: 60px;
     border-radius: 15px;
 }
+#joinRoom{
+    background: linear-gradient(45deg, #a47ed4, transparent);
+    color: white;
+    width: 80px;
+    height: 60px;
+    border-radius: 15px;
+}
+#myRoomID{
+    display: inline-block;
+    height:43px;
+    border-radius: 10px;
+}
 #joinMyRoom{
     position: absolute;
     top:50%;
@@ -178,6 +179,18 @@ body{
     width: 80px;
     height: 60px;
     border-radius: 15px;
+}
+
+.enter-code{
+    position: absolute;
+    top : 20%;
+    left: 28%;
+    border: 2px solid purple;
+    width: 50%;
+    margin: 75px auto;
+    text-align: center;
+    padding: 35px;
+    height: 35%;
 }
 
 .footer{
@@ -194,4 +207,10 @@ body{
 .copy{
     width: 30px;
     height: 30px;
+}
+#alert{
+    font-size: 36px;
+    text-align: center;
+    color:#cbd4ff ;
+    margin-top: 20%;
 }
